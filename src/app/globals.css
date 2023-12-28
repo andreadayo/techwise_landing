@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #F5F5F5;
+    color: #030C13;
+}
+
+.margin-sides {
+    margin-left: 150px;
+    margin-right: 150px;
+}
