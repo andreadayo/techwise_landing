@@ -8,7 +8,7 @@ export default function Home() {
         <nav className="flex justify-between items-center py-8 mb-8 margin-sides">
           <div className="flex gap-2 items-center">
             <img src="/techwise_logo.svg" alt="TechWise Logo" />
-            <p className="text-2xl font-bold">TechWise</p>
+            <p className="text-2xl font-bold">Tech<span className="text-green">Wise</span></p>
           </div>
           <div className="flex gap-14 items-center">
             <p className="text-gray font-medium">Home</p>
@@ -64,19 +64,19 @@ export default function Home() {
       <h1 className="text-3xl text-center font-extrabold leading-snug mb-20">Comprehensive Tech<br/>Services for Your Business Needs</h1>
 
       <div className="flex justify-center gap-24 margin-sides mb-20">
-        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-3xl p-10">
+        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
           <img className="mb-8" src="/software_dev.svg" alt="Software Development Icon" />
           <h1 className="text-xl font-bold mb-3">Software Development</h1>
           <p className="text-sm text-gray">From concept to execution, we create tailored software solutions that cater to your unique business requirements, enabling seamless processes and increased efficiency.</p>
         </div>
 
-        <div className="w-80 bg-green border-2 border-green rounded-3xl p-10">
+        <div className="w-80 bg-green border-2 border-green rounded-2xl p-10">
           <img className="mb-8" src="/web_dev.svg" alt="Web Development Icon" />
           <h1 className="text-xl text-white font-bold mb-3">Web Development</h1>
           <p className="text-sm text-white text-gray">Our expert team crafts visually stunning websites that captivate users and drive engagement, incorporating the latest design trends and responsive technologies.</p>
         </div>
 
-        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-3xl p-10">
+        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
           <img className="mb-8" src="/it_consulting.svg" alt="IT Consulting Icon" />
           <h1 className="text-xl font-bold mb-3">IT Consulting</h1>
           <p className="text-sm text-gray">Gain a competitive edge with our IT consulting services. We analyze your existing infrastructure, identify opportunities for optimization, and provide insights for growth and scalability.</p>
@@ -128,8 +128,65 @@ export default function Home() {
       {/* Footer */}
       <footer>
         <div className="w-full bg-[#FFFEFE] px-[150px] py-20">
-          Footer
+          <div className="flex justify-between">
+            <div>
+              <div className="flex gap-3.5 items-center mb-10">
+                <img className="h-10" src="/techwise_logo.svg" alt="TechWise Logo" />
+                <p className="text-3xl font-bold">Tech<span className="text-green">Wise</span></p>
+              </div>
+              <div className="flex flex-col gap-6">
+                <div className="flex gap-5">
+                  <img src="/address.svg" alt="Address" />
+                  <p className="text-sm font-medium">936 A. Bonifacio Avenue,<br/>Balintawak, Quezon City</p>
+                </div>
+                <div className="flex gap-5">
+                  <img src="/phone.svg" alt="Address" />
+                  <p className="text-sm font-medium">(+63) 917-123-4567</p>
+                </div>
+                <div className="flex gap-5">
+                  <img src="/mail.svg" alt="Address" />
+                  <p className="text-sm font-medium">contact@techwhise.com</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex gap-24">
+              <div className="flex flex-col gap-4">
+                <h1 className="text-xl font-bold">Company</h1>
+                <a className="text-sm text-gray font-medium">About Us</a>
+                <a className="text-sm text-gray font-medium">Blog</a>
+                <a className="text-sm text-gray font-medium">Team</a>
+                <a className="text-sm text-gray font-medium">Careers</a>
+                <a className="text-sm text-gray font-medium">Contact</a>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h1 className="text-xl font-bold">Services</h1>
+                <a className="text-sm text-gray font-medium">Plans & Pricing</a>
+                <a className="text-sm text-gray font-medium">Software Development</a>
+                <a className="text-sm text-gray font-medium">Web Development</a>
+                <a className="text-sm text-gray font-medium">IT Consulting</a>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h1 className="text-xl font-bold">Privacy Policy</h1>
+                <a className="text-sm text-gray font-medium">Terms of Service</a>
+                <a className="text-sm text-gray font-medium">Data Privacy</a>
+                <a className="text-sm text-gray font-medium">Legal</a>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div className="w-full flex justify-between bg-[#FFFEFE] border-t-2 border-lightgray px-[150px] py-5">
+          <p className="text-xs text-gray font-medium">© 2023 TechWise Inc. All rights reserved</p>
+          <div className="flex gap-3.5">
+            <img src="/facebook.svg" alt="Facebook" />
+            <img src="/twitter.svg" alt="Twitter" />
+            <img src="/instagram.svg" alt="Instagram" />
+            <img src="/github.svg" alt="Github" />
+          </div>
+        </div>
+          
+        
       </footer>
       
     </>
