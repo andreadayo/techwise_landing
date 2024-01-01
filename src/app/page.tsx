@@ -166,8 +166,24 @@ export default function Home() {
       </div>
 
       {/* Brands */}
-      <div className="w-full h-52 flex justify-between items-center bg-[#FFFEFE] px-48 py-12">
-        {/* https://jackwhiting.co.uk/posts/creating-a-marquee-with-tailwind/ */}
+      <div className="w-full h-52 bg-[#FFFEFE] py-12">
+        <div className="relative flex overflow-x-hidden">
+          <div className="py-12 animate-marquee whitespace-nowrap">
+            <span className="mx-4 text-4xl">Marquee Item 1</span>
+            <span className="mx-4 text-4xl">Marquee Item 2</span>
+            <span className="mx-4 text-4xl">Marquee Item 3</span>
+            <span className="mx-4 text-4xl">Marquee Item 4</span>
+            <span className="mx-4 text-4xl">Marquee Item 5</span>
+          </div>
+
+          <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap">
+            <span className="mx-4 text-4xl">Marquee Item 1</span>
+            <span className="mx-4 text-4xl">Marquee Item 2</span>
+            <span className="mx-4 text-4xl">Marquee Item 3</span>
+            <span className="mx-4 text-4xl">Marquee Item 4</span>
+            <span className="mx-4 text-4xl">Marquee Item 5</span>
+          </div>
+        </div>
       </div>
 
       {/* Testimonials */}
