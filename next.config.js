@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const withMT = require("@material-tailwind/react/utils/withMT");
 
-module.exports = nextConfig
+module.exports = withMT({
+    content: [],
+    theme: {
+      extend: {},
+    },
+    plugins: [],
+  });

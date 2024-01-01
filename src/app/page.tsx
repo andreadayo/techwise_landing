@@ -1,4 +1,86 @@
+'use client';
+
 import Image from 'next/image'
+import { Carousel } from "@material-tailwind/react";
+import { CarouselStylesType } from "@material-tailwind/react";
+
+const theme = {
+  carousel: {
+    defaultProps: {
+      prevArrow: ({ loop, handlePrev, firstIndex }: {
+        loop: boolean;
+        handlePrev: () => void;
+        firstIndex: boolean;
+      }) => {
+        return (
+          <button
+            onClick={handlePrev}
+            disabled={!loop && firstIndex}
+            className="!absolute top-2/4 left-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
+          >
+            Left
+          </button>
+        );
+      },
+      nextArrow: ({ loop, handleNext, lastIndex }: {
+        loop: boolean;
+        handleNext: () => void;
+        lastIndex: boolean;
+      }) => (
+        <button
+          onClick={handleNext}
+          disabled={!loop && lastIndex}
+          className="!absolute top-2/4 right-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
+        >
+          Right
+        </button>
+      ),
+      navigation: ({ setActiveIndex, activeIndex, length }: {
+        setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
+        activeIndex: number;
+        length: number;
+      }) => (
+        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+          {new Array(length).fill("").map((_, i) => (
+            <span
+              key={i}
+              className={`block h-3 w-3 cursor-pointer rounded-full transition-colors content-[''] ${
+                activeIndex === i ? "bg-white" : "bg-white/50"
+              }`}
+              onClick={() => setActiveIndex(i)}
+            />
+          ))}
+        </div>
+      ),
+      autoplay: false,
+      autoplayDelay: 5000,
+      transition: {
+        type: "tween",
+        duration: 0.5,
+      },
+      loop: false,
+      className: "",
+    },
+    styles: {
+      base: {
+        carousel: {
+          position: "relative",
+          width: "w-full",
+          height: "h-full",
+          overflowX: "overflow-x-hidden",
+          display: "flex",
+        },
+ 
+        slide: {
+          width: "w-full",
+          height: "h-full",
+          display: "inline-block",
+          flex: "flex-none",
+        },
+      },
+    },
+  },
+};
 
 export default function Home() {
   return (
@@ -85,12 +167,33 @@ export default function Home() {
 
       {/* Brands */}
       <div className="w-full h-52 flex justify-between items-center bg-[#FFFEFE] px-48 py-12">
-        Brands here
+        {/* https://jackwhiting.co.uk/posts/creating-a-marquee-with-tailwind/ */}
       </div>
 
-      {/* Brands */}
-      <div className="w-full h-[500px] flex justify-between items-center bg-lightgreen px-48 py-12 mb-20">
-        Testimonials here
+      {/* Testimonials */}
+      <div className="w-full h-[500px] flex justify-between items-center bg-lightgreen px-12 py-12 mb-20">
+        <Carousel 
+          transition={{ type: "tween", duration: 0.5 }}
+          placeholder=""
+          className="rounded-xl"
+          loop={true}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+            alt="image 1"
+            className="h-full w-full object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
+            alt="image 2"
+            className="h-full w-full object-cover"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
+            alt="image 3"
+            className="h-full w-full object-cover"
+          />
+        </Carousel>
       </div>
 
       {/* FAQs */}
