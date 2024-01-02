@@ -1,6 +1,8 @@
 'use client';
 
+import React, { useState } from 'react';
 import { Carousel } from "@material-tailwind/react";
+import { Transition } from "@headlessui/react";
 
 import Testimonial from "./components/Testimonial";
 import Question from "./components/Question";
@@ -9,24 +11,157 @@ import quotes from '../../public/data/quotes';
 import questions from '../../public/data/questions';
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="h-screen flex flex-col justify-center items-between">
-        {/* Navbar */}
-        <nav className="flex justify-between items-center py-8 mb-8 margin-sides">
-          <div className="flex gap-2 items-center">
-            <img src="/techwise_logo.svg" alt="TechWise Logo" />
-            <p className="text-2xl font-bold">Tech<span className="text-green">Wise</span></p>
-          </div>
-          <div className="flex gap-14 items-center">
-            <p className="text-gray font-medium">Home</p>
-            <p className="text-gray font-medium">Services</p>
-            <p className="text-gray font-medium">Testimonies</p>
-            <p className="text-gray font-medium">FAQs</p>
-          </div>
-          <button className="bg-black rounded-xl px-6 py-3 text-white font-medium">Contact Us</button>
-        </nav>
+    <div>
+      <nav className="w-full fixed z-10 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm">
+        <div className="">
+          <div className="flex items-center justify-between h-20 margin-sides ">
+            <div className="w-full flex justify-between items-center ">
+              <div className="flex-shrink-0">
+                <div className="flex gap-2 items-center">
+                  <img src="/techwise_logo.svg" alt="TechWise Logo" />
+                  <p className="text-2xl font-bold">Tech<span className="text-green">Wise</span></p>
+                </div>
+              </div>
+              <div className="hidden lg:block">
+                <div className="flex gap-14 items-baseline">
+                  <a
+                    href="#"
+                    className=" hover:bg-gray-700 px-3 py-2 rounded-md text-medium font-medium"
+                  >
+                    Home
+                  </a>
 
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                  >
+                    Services
+                  </a>
+
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                  >
+                    Testimonies
+                  </a>
+
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                  >
+                    FAQs
+                  </a>
+                </div>
+              </div>
+              <button className="hidden lg:block bg-black rounded-xl px-6 py-3 text-white font-medium">Contact Us</button>
+            </div>
+            
+            <div className="-mr-2 flex lg:hidden">
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                type="button"
+                className="bg-gray-900 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+              >
+                <span className="sr-only">Open main menu</span>
+                {!isOpen ? (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    className="block h-6 w-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            
+          </div>
+        </div>
+
+        <Transition
+          show={isOpen}
+          enter="transition ease-out duration-100 transform"
+          enterFrom="opacity-0 scale-95"
+          enterTo="opacity-100 scale-100"
+          leave="transition ease-in duration-75 transform"
+          leaveFrom="opacity-100 scale-100"
+          leaveTo="opacity-0 scale-95"
+        >
+          {(ref) => (
+            <div className="lg:hidden" id="mobile-menu">
+              <div ref={ref} className="w-full lg:px-8 pt-2 pb-3 space-y-1 sm:px-3">
+                <a
+                  href="#"
+                  className="hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                >
+                  Home
+                </a>
+
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                >
+                  Services
+                </a>
+
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                >
+                  Testimonies
+                </a>
+
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                >
+                  FAQs
+                </a>
+
+                <a
+                  href="#"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-bold"
+                >
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          )}
+        </Transition>
+      </nav>
+    </div>
+
+      <div className="h-screen flex flex-col justify-center items-between pt-20">
         {/* Hero Section */}
         <div className="grow flex items-center mb-16 margin-sides">
             <div className="grow">
