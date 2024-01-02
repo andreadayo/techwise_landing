@@ -1,8 +1,12 @@
 'use client';
 
 import { Carousel } from "@material-tailwind/react";
+
 import Testimonial from "./components/Testimonial";
+import Question from "./components/Question";
+
 import quotes from '../../public/data/quotes';
+import questions from '../../public/data/questions';
 
 export default function Home() {
   return (
@@ -156,31 +160,12 @@ export default function Home() {
       <h1 className="text-3xl text-center font-extrabold leading-snug mb-20">Answers to Common Questions<br/>About Our Services</h1>
 
       <div className="flex flex-wrap justify-center gap-8 margin-sides mb-20">
-        {/* Note: change to components */}
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
-        <div className="w-[540px] flex justify-between items-center bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-6">
-          <p className="font-semibold">What industries do you specialize in?</p>
-          <img className="h-3.5" src="/plus_icon.svg" alt="Open" />
-        </div>
+          {questions.map((question, index) => (
+            <Question 
+            key={index}
+            question={question.question}
+            answer={question.answer} />
+          ))}
       </div>
 
       {/* Footer */}

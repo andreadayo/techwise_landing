@@ -18,6 +18,9 @@ const config: Config = {
         green: '#20B486',
         lightgreen: '#D3F0E8',
       },
+      transitionProperty: {
+          'height': 'height'
+      },
       animation: {
         marquee: 'marquee 25s linear infinite',
         marquee2: 'marquee2 25s linear infinite',
