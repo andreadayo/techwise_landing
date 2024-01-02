@@ -1,86 +1,8 @@
 'use client';
 
-import Image from 'next/image'
 import { Carousel } from "@material-tailwind/react";
-import { CarouselStylesType } from "@material-tailwind/react";
-
-const theme = {
-  carousel: {
-    defaultProps: {
-      prevArrow: ({ loop, handlePrev, firstIndex }: {
-        loop: boolean;
-        handlePrev: () => void;
-        firstIndex: boolean;
-      }) => {
-        return (
-          <button
-            onClick={handlePrev}
-            disabled={!loop && firstIndex}
-            className="!absolute top-2/4 left-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
-          >
-            Left
-          </button>
-        );
-      },
-      nextArrow: ({ loop, handleNext, lastIndex }: {
-        loop: boolean;
-        handleNext: () => void;
-        lastIndex: boolean;
-      }) => (
-        <button
-          onClick={handleNext}
-          disabled={!loop && lastIndex}
-          className="!absolute top-2/4 right-4 -translate-y-2/4 rounded-full select-none transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-12 max-w-[48px] h-12 max-h-[48px] text-white hover:bg-white/10 active:bg-white/30 grid place-items-center"
-        >
-          Right
-        </button>
-      ),
-      navigation: ({ setActiveIndex, activeIndex, length }: {
-        setActiveIndex: React.Dispatch<React.SetStateAction<number>>;
-        activeIndex: number;
-        length: number;
-      }) => (
-        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-          {new Array(length).fill("").map((_, i) => (
-            <span
-              key={i}
-              className={`block h-3 w-3 cursor-pointer rounded-full transition-colors content-[''] ${
-                activeIndex === i ? "bg-white" : "bg-white/50"
-              }`}
-              onClick={() => setActiveIndex(i)}
-            />
-          ))}
-        </div>
-      ),
-      autoplay: false,
-      autoplayDelay: 5000,
-      transition: {
-        type: "tween",
-        duration: 0.5,
-      },
-      loop: false,
-      className: "",
-    },
-    styles: {
-      base: {
-        carousel: {
-          position: "relative",
-          width: "w-full",
-          height: "h-full",
-          overflowX: "overflow-x-hidden",
-          display: "flex",
-        },
- 
-        slide: {
-          width: "w-full",
-          height: "h-full",
-          display: "inline-block",
-          flex: "flex-none",
-        },
-      },
-    },
-  },
-};
+import Testimonial from "./components/Testimonial";
+import quotes from '../../public/data/quotes';
 
 export default function Home() {
   return (
@@ -165,23 +87,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Brands */}
+      {/* Brands - might update to https://magicui.design/components/marquee */}
       <div className="w-full h-52 bg-[#FFFEFE] py-12">
         <div className="relative flex overflow-x-hidden">
-          <div className="py-12 animate-marquee whitespace-nowrap">
-            <span className="mx-4 text-4xl">Marquee Item 1</span>
-            <span className="mx-4 text-4xl">Marquee Item 2</span>
-            <span className="mx-4 text-4xl">Marquee Item 3</span>
-            <span className="mx-4 text-4xl">Marquee Item 4</span>
-            <span className="mx-4 text-4xl">Marquee Item 5</span>
+          <div className="py-6 flex items-center animate-marquee whitespace-nowrap">
+            <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
+            <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
+            <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
+            <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
+            <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
           </div>
 
-          <div className="absolute top-0 py-12 animate-marquee2 whitespace-nowrap">
-            <span className="mx-4 text-4xl">Marquee Item 1</span>
-            <span className="mx-4 text-4xl">Marquee Item 2</span>
-            <span className="mx-4 text-4xl">Marquee Item 3</span>
-            <span className="mx-4 text-4xl">Marquee Item 4</span>
-            <span className="mx-4 text-4xl">Marquee Item 5</span>
+          <div className="absolute flex items-center top-0 py-6 animate-marquee2 whitespace-nowrap">
+            <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
+            <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
+            <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
+            <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
+            <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
           </div>
         </div>
       </div>
@@ -192,23 +114,40 @@ export default function Home() {
           transition={{ type: "tween", duration: 0.5 }}
           placeholder=""
           className="rounded-xl"
+          prevArrow={({ loop, handlePrev, firstIndex }) => {
+            return (
+              <button
+                onClick={handlePrev}
+                disabled={!loop && firstIndex}
+                className="!absolute top-2/4 left-4 -translate-y-2/4 rounded-full select-none transition-all w-12 max-w-[48px] h-12 max-h-[48px] bg-white shadow-sm hover:shadow-lg grid place-items-center pr-1"
+              >
+                <img src="/left.svg"/>
+              </button>
+            );
+          }}
+          nextArrow={({ loop, handleNext, lastIndex }) => (
+            <button
+              onClick={handleNext}
+              disabled={!loop && lastIndex}
+              className="!absolute top-2/4 right-4 -translate-y-2/4 rounded-full select-none transition-all w-12 max-w-[48px] h-12 max-h-[48px] bg-white shadow-sm hover:shadow-lg grid place-items-center pl-1"
+            >
+              <img src="/right.svg"/>
+            </button>
+          )}
+          navigation={({ setActiveIndex, activeIndex, length }) => (<div></div>)}
           loop={true}
+          autoplay={true}
+          autoplayDelay={10000}
         >
-          <img
-            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-            alt="image 1"
-            className="h-full w-full object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-            alt="image 2"
-            className="h-full w-full object-cover"
-          />
-          <img
-            src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-            alt="image 3"
-            className="h-full w-full object-cover"
-          />
+          {quotes.map((testimonial, index) => (
+            <Testimonial 
+            key={index}
+            message={testimonial.message}
+            name={testimonial.name}
+            position={testimonial.position}
+            company={testimonial.company}
+            image={testimonial.image} />
+          ))}
         </Carousel>
       </div>
 
