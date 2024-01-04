@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Carousel } from "@material-tailwind/react";
 import { Transition } from "@headlessui/react";
 import Marquee from "react-fast-marquee";
@@ -13,6 +13,47 @@ import questions from '../../public/data/questions';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    function scrollToTarget(event: Event) {
+      event.preventDefault();
+    
+      const targetId = (event.target as HTMLAnchorElement).getAttribute('data-target-id');
+    
+      if (targetId && typeof document !== 'undefined') {
+        const targetDiv = document.getElementById(targetId);
+    
+        if (targetDiv) {
+          // Calculate the offset based on your fixed navbar height
+          const navbarHeight = 100; // Adjust this value based on your fixed navbar height
+          const offset = targetDiv.getBoundingClientRect().top - navbarHeight;
+    
+          // Adjust the scrollIntoView options with the calculated offset
+          window.scrollBy({ top: offset, left: 0, behavior: 'smooth' });
+        } else {
+          console.error(`Target div with id '${targetId}' not found`);
+        }
+      } else {
+        console.error('data-target-id attribute not found on the clicked element or document is undefined');
+      }
+    }
+    
+
+    if (typeof document !== 'undefined') {
+      const scrollLinks = document.querySelectorAll('a.scroll-link');
+
+      scrollLinks.forEach((link) => {
+        link.addEventListener('click', scrollToTarget);
+      });
+
+      return () => {
+        scrollLinks.forEach((link) => {
+          link.removeEventListener('click', scrollToTarget);
+        });
+      };
+    }
+  }, []);
+
   return (
     <>
       {/* Navbar */}
@@ -30,28 +71,32 @@ export default function Home() {
                 <div className="flex gap-14 items-baseline">
                   <a
                     href="#"
-                    className="hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    className="scroll-link hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    data-target-id="home"
                   >
                     Home
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    data-target-id="services"
                   >
                     Services
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    data-target-id="testimonies"
                   >
                     Testimonies
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
+                    data-target-id="faqs"
                   >
                     FAQs
                   </a>
@@ -123,28 +168,32 @@ export default function Home() {
               <div ref={ref} className="w-full lg:px-8 pt-2 pb-3 space-y-1 sm:px-3">
                 <a
                   href="#"
-                  className="hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  className="scroll-link hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  data-target-id="home"
                 >
                   Home
                 </a>
 
                 <a
                   href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  data-target-id="services"
                 >
                   Services
                 </a>
 
                 <a
                   href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  data-target-id="testimonies"
                 >
                   Testimonies
                 </a>
 
                 <a
                   href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  className="scroll-link text-gray-300 hover:bg-gray-700 hover:text-green block px-8 py-2 rounded-md text-base font-medium"
+                  data-target-id="faqs"
                 >
                   FAQs
                 </a>
@@ -163,7 +212,7 @@ export default function Home() {
 
       <div className="h-screen flex flex-col justify-center items-between pt-20">
         {/* Hero Section */}
-        <div className="grow flex items-center margin-sides">
+        <div id="home" className="grow flex items-center margin-sides">
             <div className="grow">
               <div className="mb-8 w-max bg-lightgreen rounded-full px-6 py-3 text-darkgreen text-sm md:text-base font-semibold">Empowering Innovation for the Future of Technology</div>
               <h1 className="mb-3 md:mb-7 text-3xl md:text-4xl font-bold leading-snug">Empowering Innovation<br/>for the Future of Tech</h1>
@@ -203,7 +252,7 @@ export default function Home() {
     </div>
 
       {/* Services */}
-      <h1 className="text-green text-2xl text-center font-bold mb-4">Our Services</h1>
+      <h1 id="services" className="text-green text-2xl text-center font-bold mb-4">Our Services</h1>
       <h1 className="text-2xl md:text-3xl text-center font-extrabold leading-snug mb-20">Comprehensive Tech<br/>Services for Your Business Needs</h1>
 
       <div className="flex flex-col lg:flex-row sm:items-center gap-12 justify-center lg:gap-24 margin-sides mb-20">
@@ -227,7 +276,7 @@ export default function Home() {
       </div>
 
       {/* Brands */}
-      <div className="w-full flex items-center h-52 bg-[#FFFEFE] py-12">
+      <div className="w-full flex items-center h-52 bg-[#FFFEFE]">
         <Marquee>
           <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
           <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
@@ -243,7 +292,7 @@ export default function Home() {
       </div>
 
       {/* Testimonials */}
-      <div className="w-full h-auto lg:h-[500px] flex justify-between items-center bg-lightgreen sm:px-6 lg:px-12 py-12 mb-20">
+      <div id="testimonies" className="w-full h-auto lg:h-[500px] flex justify-between items-center bg-lightgreen sm:px-6 lg:px-12 py-12 mb-20">
         <Carousel 
           transition={{ type: "tween", duration: 0.5 }}
           placeholder=""
@@ -286,7 +335,7 @@ export default function Home() {
       </div>
 
       {/* FAQs */}
-      <h1 className="text-green text-2xl text-center font-bold mb-4">FAQs</h1>
+      <h1 id="faqs" className="text-green text-2xl text-center font-bold mb-4">FAQs</h1>
       <h1 className="text-2xl md:text-3xl text-center font-extrabold leading-snug mb-20">Answers to Common Questions<br/>About Our Services</h1>
 
       <div className="flex flex-wrap justify-center gap-8 margin-sides mb-20">
