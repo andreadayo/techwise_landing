@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Carousel } from "@material-tailwind/react";
 import { Transition } from "@headlessui/react";
+import Marquee from "react-fast-marquee";
 
 import Testimonial from "./components/Testimonial";
 import Question from "./components/Question";
@@ -14,7 +15,7 @@ export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-    <div>
+      {/* Navbar */}
       <nav className="w-full fixed z-10 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm">
         <div className="">
           <div className="flex items-center justify-between h-20 margin-sides ">
@@ -29,28 +30,28 @@ export default function Home() {
                 <div className="flex gap-14 items-baseline">
                   <a
                     href="#"
-                    className=" hover:bg-gray-700 px-3 py-2 rounded-md text-medium font-medium"
+                    className="hover:text-green px-3 py-2 rounded-md text-medium font-medium"
                   >
                     Home
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
                   >
                     Services
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
                   >
                     Testimonies
                   </a>
 
                   <a
                     href="#"
-                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-medium font-medium"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-green px-3 py-2 rounded-md text-medium font-medium"
                   >
                     FAQs
                   </a>
@@ -159,18 +160,17 @@ export default function Home() {
           )}
         </Transition>
       </nav>
-    </div>
 
       <div className="h-screen flex flex-col justify-center items-between pt-20">
         {/* Hero Section */}
-        <div className="grow flex items-center mb-16 margin-sides">
+        <div className="grow flex items-center margin-sides">
             <div className="grow">
-              <div className="mb-8 w-max bg-lightgreen rounded-full px-6 py-3 text-darkgreen font-semibold">Empowering Innovation for the Future of Technology</div>
-              <h1 className="mb-7 text-4xl font-bold leading-snug">Empowering Innovation<br/>for the Future of Tech</h1>
-              <p className="mb-9 text-gray font-medium leading-relaxed">With our cutting-edge solutions and exceptional expertise, we are committed to<br/>providing the best services to thrive in the digital age.</p>
-              <button className="bg-green rounded-xl px-6 py-3 text-white font-medium">Start your project now</button>
+              <div className="mb-8 w-max bg-lightgreen rounded-full px-6 py-3 text-darkgreen text-sm md:text-base font-semibold">Empowering Innovation for the Future of Technology</div>
+              <h1 className="mb-3 md:mb-7 text-3xl md:text-4xl font-bold leading-snug">Empowering Innovation<br/>for the Future of Tech</h1>
+              <p className="md:w-3/4 mb-9 text-gray text-xs md:text-base font-medium leading-relaxed">With our cutting-edge solutions and exceptional expertise, we are committed toproviding the best services to thrive in the digital age.</p>
+              <button className="bg-green hover:bg-darkgreen duration-300 rounded-xl text-sm md:text-base px-6 py-3 text-white font-medium">Start your project now</button>
             </div>
-            <div className="w-max">
+            <div className="w-max hidden lg:block">
               <div className="w-[460px] h-[500px] border-2 border-lightgray rounded-3xl p-10">
                 <div className="w-full h-full border-2 border-lightgray rounded-2xl p-10">
                   <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl">
@@ -183,72 +183,67 @@ export default function Home() {
       </div>
       
       {/* Statistics */}
-      <div className="w-full h-52 flex justify-between items-center bg-[#FFFEFE] px-48 py-12 mb-20">
-        <div>
-          <h1 className="text-green text-4xl text-center font-bold mb-2">50K+</h1>
-          <p className="text-lg font-medium">Satisfied clients</p>
-        </div>
-        <div>
-          <h1 className="text-green text-4xl text-center font-bold mb-2">100</h1>
-          <p className="text-lg font-medium">Projects completed</p>
-        </div>
-        <div>
-          <h1 className="text-green text-4xl text-center font-bold mb-2">95%</h1>
-          <p className="text-lg font-medium">Client retention rate</p>
-        </div>
-        <div>
-          <h1 className="text-green text-4xl text-center font-bold mb-2">$100k</h1>
-          <p className="text-lg font-medium">Generated revenue</p>
-        </div>
+      <div className="w-full h-auto lg:h-52 flex flex-wrap justify-center lg:justify-between gap-8 items-center bg-[#FFFEFE] px-8 lg:px-48 py-12 mb-20">
+      <div className="lg:w-fit md:w-1/3 w-full">
+        <h1 className="text-green text-4xl text-center font-bold mb-2">50K+</h1>
+        <p className="text-lg text-center font-medium">Satisfied clients</p>
       </div>
+      <div className="lg:w-fit md:w-1/3 w-full">
+        <h1 className="text-green text-4xl text-center font-bold mb-2">100</h1>
+        <p className="text-lg text-center font-medium">Projects completed</p>
+      </div>
+      <div className="lg:w-fit md:w-1/3 w-full">
+        <h1 className="text-green text-4xl text-center font-bold mb-2">95%</h1>
+        <p className="text-lg text-center font-medium">Client retention rate</p>
+      </div>
+      <div className="lg:w-fit md:w-1/3 w-full">
+        <h1 className="text-green text-4xl text-center font-bold mb-2">$100k</h1>
+        <p className="text-lg text-center font-medium">Generated revenue</p>
+      </div>
+    </div>
 
       {/* Services */}
       <h1 className="text-green text-2xl text-center font-bold mb-4">Our Services</h1>
-      <h1 className="text-3xl text-center font-extrabold leading-snug mb-20">Comprehensive Tech<br/>Services for Your Business Needs</h1>
+      <h1 className="text-2xl md:text-3xl text-center font-extrabold leading-snug mb-20">Comprehensive Tech<br/>Services for Your Business Needs</h1>
 
-      <div className="flex justify-center gap-24 margin-sides mb-20">
-        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
+      <div className="flex flex-col lg:flex-row sm:items-center gap-12 justify-center lg:gap-24 margin-sides mb-20">
+        <div className="sm:w-3/4 lg:w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
           <img className="mb-8" src="/software_dev.svg" alt="Software Development Icon" />
           <h1 className="text-xl font-bold mb-3">Software Development</h1>
           <p className="text-sm text-gray">From concept to execution, we create tailored software solutions that cater to your unique business requirements, enabling seamless processes and increased efficiency.</p>
         </div>
 
-        <div className="w-80 bg-green border-2 border-green rounded-2xl p-10">
+        <div className="sm:w-3/4 lg:w-80 bg-green border-2 border-green rounded-2xl p-10">
           <img className="mb-8" src="/web_dev.svg" alt="Web Development Icon" />
           <h1 className="text-xl text-white font-bold mb-3">Web Development</h1>
-          <p className="text-sm text-white text-gray">Our expert team crafts visually stunning websites that captivate users and drive engagement, incorporating the latest design trends and responsive technologies.</p>
+          <p className="text-sm text-white">Our expert team crafts visually stunning websites that captivate users and drive engagement, incorporating the latest design trends and responsive technologies.</p>
         </div>
 
-        <div className="w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
+        <div className="sm:w-3/4 lg:w-80 bg-[#FFFEFE] border-2 border-lightgray rounded-2xl p-10">
           <img className="mb-8" src="/it_consulting.svg" alt="IT Consulting Icon" />
           <h1 className="text-xl font-bold mb-3">IT Consulting</h1>
           <p className="text-sm text-gray">Gain a competitive edge with our IT consulting services. We analyze your existing infrastructure, identify opportunities for optimization, and provide insights for growth and scalability.</p>
         </div>
       </div>
 
-      {/* Brands - might update to https://magicui.design/components/marquee */}
-      <div className="w-full h-52 bg-[#FFFEFE] py-12">
-        <div className="relative flex overflow-x-hidden">
-          <div className="py-6 flex items-center animate-marquee whitespace-nowrap">
-            <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
-            <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
-            <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
-            <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
-            <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
-          </div>
-
-          <div className="absolute flex items-center top-0 py-6 animate-marquee2 whitespace-nowrap">
-            <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
-            <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
-            <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
-            <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
-            <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
-          </div>
-        </div>
+      {/* Brands */}
+      <div className="w-full flex items-center h-52 bg-[#FFFEFE] py-12">
+        <Marquee>
+          <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
+          <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
+          <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
+          <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
+          <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
+          <img className="mx-8" src="/brands/1_bbc.png" alt="BBC" />
+          <img className="mx-8" src="/brands/2_paypal.png" alt="PayPal" />
+          <img className="mx-8" src="/brands/3_nike.png" alt="Nike" />
+          <img className="mx-8" src="/brands/4_amazon.png" alt="Amazon" />
+          <img className="mx-8" src="/brands/5_cocacola.png" alt="Coca Cola" />
+        </Marquee>
       </div>
 
       {/* Testimonials */}
-      <div className="w-full h-[500px] flex justify-between items-center bg-lightgreen px-12 py-12 mb-20">
+      <div className="w-full h-auto lg:h-[500px] flex justify-between items-center bg-lightgreen sm:px-6 lg:px-12 py-12 mb-20">
         <Carousel 
           transition={{ type: "tween", duration: 0.5 }}
           placeholder=""
@@ -292,7 +287,7 @@ export default function Home() {
 
       {/* FAQs */}
       <h1 className="text-green text-2xl text-center font-bold mb-4">FAQs</h1>
-      <h1 className="text-3xl text-center font-extrabold leading-snug mb-20">Answers to Common Questions<br/>About Our Services</h1>
+      <h1 className="text-2xl md:text-3xl text-center font-extrabold leading-snug mb-20">Answers to Common Questions<br/>About Our Services</h1>
 
       <div className="flex flex-wrap justify-center gap-8 margin-sides mb-20">
           {questions.map((question, index) => (
@@ -305,8 +300,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer>
-        <div className="w-full bg-[#FFFEFE] px-[150px] py-20">
-          <div className="flex justify-between">
+        <div className="w-full bg-[#FFFEFE] px-10 lg:px-[150px] py-20">
+          <div className="flex flex-col gap-10 lg:flex-row justify-between">
             <div>
               <div className="flex gap-3.5 items-center mb-10">
                 <img className="h-10" src="/techwise_logo.svg" alt="TechWise Logo" />
@@ -328,7 +323,7 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex gap-24">
+            <div className="flex flex-col md:flex-row gap-8 md:gap-24">
               <div className="flex flex-col gap-4">
                 <h1 className="text-xl font-bold">Company</h1>
                 <a className="text-sm text-gray font-medium">About Us</a>
@@ -354,7 +349,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full flex justify-between bg-[#FFFEFE] border-t-2 border-lightgray px-[150px] py-5">
+        <div className="w-full flex justify-between bg-[#FFFEFE] border-t-2 border-lightgray px-10 lg:px-[150px] py-5">
           <p className="text-xs text-gray font-medium">© 2023 TechWise Inc. All rights reserved</p>
           <div className="flex gap-3.5">
             <img src="/facebook.svg" alt="Facebook" />
